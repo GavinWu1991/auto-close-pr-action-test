@@ -7,8 +7,8 @@ on:
 jobs:
   check-pr-base:
     runs-on: ubuntu-latest
-    if: ${{startsWith(github.event.pull_request.base.ref, 'dev-')}}
     steps:
       - uses: superbrothers/close-pull-request@v3
+        if: ${{startsWith(github.event.pull_request.base.ref, 'dev-')}}
         with:
           comment: "Cancel merge of deployment (dev-*) branch to master or release branch according to branch strategy policy."

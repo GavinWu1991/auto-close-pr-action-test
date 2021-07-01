@@ -1,0 +1,14 @@
+name: Auto-PR-Check
+
+on:
+  pull_request_target:
+    types: [ opened ]
+
+jobs:
+  check-pr-base:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.head.ref, 'dev')
+    steps:
+      - uses: superbrothers/close-pull-request@v3
+        with:
+          comment: "Cancel merge of deployment (dev-*) branch to master or release branch according to branch strategy policy."

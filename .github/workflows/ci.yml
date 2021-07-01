@@ -7,7 +7,7 @@ on:
 jobs:
   check-pr-base:
     runs-on: ubuntu-latest
-    if: ${{startsWith(github.event.pull_request.base.ref, 'dev')}}
+    if: ${{startsWith(github.event.pull_request.base.ref, 'dev-')}}
     steps:
       - uses: superbrothers/close-pull-request@v3
         with:

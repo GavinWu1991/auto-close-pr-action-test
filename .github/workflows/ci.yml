@@ -12,3 +12,16 @@ jobs:
         if: ${{startsWith(github.event.pull_request.head.ref, 'dev')}}
         with:
           comment: ":no_entry_sign Cancel merge of deployment (dev-*) branch to master or release branch according to branch strategy policy."
+  
+  check-dev:
+    runs-on: ubuntu-latest
+    steps:
+        -   uses: actions/checkout@v2
+            with:
+                fetch-depth: 0
+
+        -   uses: SonicGarden/check-merged-action@v1
+            with:
+                token: ${{ secrets.GITHUB_TOKEN }}
+                originBranch: dev-xxx
+                title: "# :anger: Not merged to DEV!"
